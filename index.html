@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketing2974 — Recomendaciones SaaS e Inteligencia Artificial</title>
+  <meta name="description" content="Plataforma de recomendaciones de software SaaS y herramientas de IA. Conectamos creadores de contenido, AIs recomendadores y las mejores herramientas digitales." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🚀</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0f;
+      color: #e0e0e8;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== ANIMATED BACKGROUND ===== */
+    .bg-grid {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .bg-glow {
+      position: fixed;
+      top: -20%; left: -20%;
+      width: 140%; height: 140%;
+      background: radial-gradient(ellipse at 30% 20%, rgba(56,189,248,0.06) 0%, transparent 50%),
+                  radial-gradient(ellipse at 70% 80%, rgba(168,85,247,0.05) 0%, transparent 50%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      z-index: 100;
+      padding: 16px 0;
+      transition: all 0.3s ease;
+    }
+    .navbar.scrolled {
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 12px 0;
+    }
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #38bdf8, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: #fbbf24; -webkit-text-fill-color: #fbbf24; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #94a3b8;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #e0e0e8; }
+    .nav-cta {
+      padding: 8px 20px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #38bdf8, #a78bfa);
+      color: #fff !important;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(56,189,248,0.3); }
+    .mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .mobile-toggle span {
+      width: 24px; height: 2px;
+      background: #e0e0e8;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.2);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #38bdf8;
+      margin-bottom: 24px;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #38bdf8;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #a78bfa 50%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.125rem;
+      color: #94a3b8;
+      max-width: 520px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #38bdf8, #a78bfa);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(56,189,248,0.35);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      color: #e0e0e8;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    /* ===== HERO VISUAL ===== */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      width: 100%;
+      max-width: 480px;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 20px;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .hero-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56,189,248,0.2);
+    }
+    .hero-card-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+    .hero-card h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+    .hero-card p { font-size: 0.7rem; color: #64748b; margin-bottom: 0; line-height: 1.4; }
+    .hero-card-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    /* ===== SECTION TITLES ===== */
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 0;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #38bdf8;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: #94a3b8;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+    .how-step {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 40px 28px;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .how-step:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(56,189,248,0.15);
+      transform: translateY(-4px);
+    }
+    .how-step-number {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .how-step h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+    .how-step p { font-size: 0.85rem; color: #94a3b8; line-height: 1.6; }
+    .how-arrow {
+      position: absolute;
+      top: 50%;
+      right: -18px;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.1);
+      font-size: 1.5rem;
+    }
+
+    /* ===== FOR SECTIONS ===== */
+    .for-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .for-section.reverse { direction: rtl; }
+    .for-section.reverse > * { direction: ltr; }
+    .for-visual {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 24px;
+      padding: 40px;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .for-visual-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      transition: background 0.2s;
+    }
+    .for-visual-item:hover { background: rgba(255,255,255,0.06); }
+    .for-visual-item .avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .for-visual-item .info { flex: 1; }
+    .for-visual-item .info h5 { font-size: 0.8rem; font-weight: 600; }
+    .for-visual-item .info span { font-size: 0.7rem; color: #64748b; }
+    .for-visual-item .commission {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #34d399;
+    }
+    .for-text h2 { margin-bottom: 16px; }
+    .for-text p { color: #94a3b8; line-height: 1.7; margin-bottom: 24px; }
+    .for-features { display: flex; flex-direction: column; gap: 12px; }
+    .for-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+    .for-features li .check {
+      color: #34d399;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ===== STATS ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .stat-item h3 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #38bdf8, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-item p { font-size: 0.85rem; color: #64748b; margin-top: 4px; }
+
+    /* ===== TOOLS SHOWCASE ===== */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 60px;
+    }
+    .tool-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .tool-card:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(56,189,248,0.2);
+      transform: translateY(-3px);
+    }
+    .tool-card .tool-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 14px;
+    }
+    .tool-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; }
+    .tool-card p { font-size: 0.75rem; color: #64748b; }
+    .tool-card .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 100px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 0;
+    }
+    .cta-box {
+      background: linear-gradient(135deg, rgba(56,189,248,0.08), rgba(168,85,247,0.08));
+      border: 1px solid rgba(56,189,248,0.15);
+      border-radius: 32px;
+      padding: 80px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(56,189,248,0.03) 0%, transparent 50%);
+      animation: rotate-glow 20s linear infinite;
+    }
+    @keyframes rotate-glow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .cta-box h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .cta-box p {
+      font-size: 1.05rem;
+      color: #94a3b8;
+      max-width: 600px;
+      margin: 0 auto 36px;
+      position: relative;
+    }
+    .cta-box .btn-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 48px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand p { font-size: 0.85rem; color: #64748b; max-width: 300px; margin-top: 12px; line-height: 1.6; }
+    .footer-col h5 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 16px; }
+    .footer-col a {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: #e0e0e8; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #475569;
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .hero p { margin: 0 auto 36px; }
+      .hero-buttons { justify-content: center; }
+      .hero-visual { order: -1; }
+      .hero-card-grid { max-width: 400px; margin: 0 auto; }
+      .how-grid { grid-template-columns: 1fr 1fr; }
+      .how-arrow { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .for-section { grid-template-columns: 1fr; gap: 40px; }
+      .for-section.reverse { direction: ltr; }
+      .cta-box { padding: 50px 30px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; width: 100%;
+        background: rgba(10,10,15,0.95);
+        backdrop-filter: blur(20px);
+        padding: 20px 24px;
+        gap: 16px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+      .mobile-toggle { display: flex; }
+      .how-grid { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .hero h1 { font-size: 2rem; }
+      .cta-box { padding: 40px 20px; border-radius: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Effects -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="logo">Marketing<span>29</span>74</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#recomendadores">Recomendadores</a>
+        <a href="#herramientas">Herramientas</a>
+        <a href="#contacto" class="nav-cta">Empieza ahora</a>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Plataforma de recomendación SaaS + IA
+          </div>
+          <h1>
+            Descubre las mejores<br />
+            <span class="gradient-text">herramientas de IA y SaaS</span><br />
+            recomendadas por expertos
+          </h1>
+          <p>
+            Conectamos creadores de contenido, AIs recomendadores y las herramientas 
+            digitales más innovadoras. Todos ganan: tú encuentras el software ideal, 
+            ellos reciben comisión por su recomendación.
+          </p>
+          <div class="hero-buttons">
+            <a href="#contacto" class="btn-primary">
+              Explorar herramientas &rarr;
+            </a>
+            <a href="#como-funciona" class="btn-secondary">
+              Cómo funciona
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card-grid">
+            <div class="hero-card">
+              <div class="hero-card-icon" style="background: rgba(56,189,248,0.12);">
+                🤖
+              </div>
+              <h4>AI Recommender</h4>
+              <p>Recomendaciones inteligentes basadas en tu uso</p>
+              <span class="hero-card-tag" style="background: rgba(56,189,248,0.1); color:#38bdf8;">
+                Comisión 15-30%
+              </span>
+            </div>
+            <div class="hero-card">
+              <div class="hero-card-icon" style="background: rgba(168,85,247,0.12);">
+                🎯
+              </div>
+              <h4>Influencers reales</h4>
+              <p>Reviews honestas de creadores de contenido</p>
+              <span class="hero-card-tag" style="background: rgba(168,85,247,0.1); color:#a78bfa;">
+                +250 creadores
+              </span>
+            </div>
+            <div class="hero-card">
+              <div class="hero-card-icon" style="background: rgba(52,211,153,0.12);">
+                💰
+              </div>
+              <h4>Modelo afiliado</h4>
+              <p>Comisiones mensuales recurrentes</p>
+              <span class="hero-card-tag" style="background: rgba(52,211,153,0.1); color:#34d399;">
+                Ingreso pasivo
+              </span>
+            </div>
+            <div class="hero-card">
+              <div class="hero-card-icon" style="background: rgba(251,191,36,0.12);">
+                📊
+              </div>
+              <h4>Analytics</h4>
+              <p>Panel en tiempo real de tus conversiones</p>
+              <span class="hero-card-tag" style="background: rgba(251,191,36,0.1); color:#fbbf24;">
+                Dashboard
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <h3>+3,200</h3>
+          <p>Herramientas SaaS listadas</p>
+        </div>
+        <div class="stat-item reveal">
+          <h3>+250</h3>
+          <p>Recomendadores activos</p>
+        </div>
+        <div class="stat-item reveal">
+          <h3>94%</h3>
+          <p>Tasa de satisfacción</p>
+        </div>
+        <div class="stat-item reveal">
+          <h3>$8.5M</h3>
+          <p>En comisiones generadas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="section" id="como-funciona">
+    <div class="container">
+      <div style="text-align: center;" class="reveal">
+        <span class="section-label">Cómo funciona</span>
+        <h2 class="section-title">El ecosistema de recomendación</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">
+          Un modelo simple donde creadores, plataformas y usuarios se benefician mutuamente
+        </p>
+      </div>
+
+      <div class="how-grid">
+        <div class="how-step reveal">
+          <div class="how-step-number" style="background: rgba(56,189,248,0.12); color:#38bdf8;">1</div>
+          <h3>Elige tu herramienta</h3>
+          <p>Explora nuestro catálogo de +3,200 herramientas SaaS y de IA. Cada una con reviews detalladas de expertos reales.</p>
+        </div>
+        <div class="how-step reveal">
+          <div class="how-step-number" style="background: rgba(168,85,247,0.12); color:#a78bfa;">2</div>
+          <h3>Prueba gratis</h3>
+          <p>Accede a trials exclusivos y descuentos gracias a nuestros acuerdos directos con los proveedores de software.</p>
+        </div>
+        <div class="how-step reveal">
+          <div class="how-step-number" style="background: rgba(251,191,36,0.12); color:#fbbf24;">3</div>
+          <h3>Recomienda y gana</h3>
+          <p>Comparte tu experiencia, genera contenido y cobra comisiones recurrentes por cada suscripción que refieras.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOR RECOMMENDERS ===== -->
+  <section class="section" id="recomendadores">
+    <div class="container">
+      <div class="for-section reveal">
+        <div class="for-visual">
+          <div class="for-visual-item">
+            <div class="avatar" style="background: rgba(56,189,248,0.15);">🤖</div>
+            <div class="info">
+              <h5>AI Content Bot</h5>
+              <span>Reviews automatizadas • 1,240 referrals</span>
+            </div>
+            <span class="commission">+$8,420/mes</span>
+          </div>
+          <div class="for-visual-item">
+            <div class="avatar" style="background: rgba(168,85,247,0.15);">👩‍💻</div>
+            <div class="info">
+              <h5>TechTuber Pro</h5>
+              <span>Tutoriales en video • 890 referrals</span>
+            </div>
+            <span class="commission">+$5,230/mes</span>
+          </div>
+          <div class="for-visual-item">
+            <div class="avatar" style="background: rgba(251,191,36,0.15);">📝</div>
+            <div class="info">
+              <h5>Blogger SaaS</h5>
+              <span>Reviews escritas • 654 referrals</span>
+            </div>
+            <span class="commission">+$3,800/mes</span>
+          </div>
+          <div class="for-visual-item">
+            <div class="avatar" style="background: rgba(52,211,153,0.15);">🎙️</div>
+            <div class="info">
+              <h5>Podcast Tech</h5>
+              <span>Recomendaciones en audio • 412 referrals</span>
+            </div>
+            <span class="commission">+$2,100/mes</span>
+          </div>
+        </div>
+        <div class="for-text">
+          <span class="section-label">Para Recomendadores</span>
+          <h2 class="section-title">Convierte tu audiencia en ingresos recurrentes</h2>
+          <p>
+            Ya seas un AI agent, influencer, youtuber, blogger o podcaster — 
+            nuestro programa de afiliados te permite monetizar tu contenido 
+            con comisiones recurrentes por cada suscripción activa.
+          </p>
+          <ul class="for-features">
+            <li><span class="check">✓</span> Comisiones del 15% al 30% recurrentes — no solo primera venta</li>
+            <li><span class="check">✓</span> Tracking en tiempo real con dashboard personalizado</li>
+            <li><span class="check">✓</span> Trials exclusivos para tus seguidores que convierten mejor</li>
+            <li><span class="check">✓</span> API abierta para integración con AIs y bots</li>
+            <li><span class="check">✓</span> Pagos automáticos cada mes sin mínimo</li>
+          </ul>
+          <br />
+          <a href="#contacto" class="btn-primary">Quiero recomendar &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOR SAAS COMPANIES ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="for-section reverse reveal">
+        <div class="for-visual" style="direction: ltr;">
+          <div class="for-visual-item">
+            <div class="avatar" style="background: rgba(56,189,248,0.15);">📈</div>
+            <div class="info">
+              <h5>Notion</h5>
+              <span>+320 afiliados activos</span>
+            </div>
+            <span class="commission">+156% crecimiento</span>
+          </div>
+          <div class="for-visual-item">
+            <div class="avatar" style="background: rgba(168,85,247,0.15);">🎨</div>
+            <div class="info">
+              <h5>Canva Pro</h5>
+              <span>+245 afiliados activos</span>
+            </div>
+            <span class="commission">+89% conversión</span>
+          </div>
+          <div class="for-visual-item">
+            <div class="avatar" style="background: rgba(251,191,36,0.15);">🧠</div>
+            <div class="info">
+              <h5>Jasper AI</h5>
+              <span>+190 afiliados activos</span>
+            </div>
+            <span class="commission">+210K ingresos</span>
+          </div>
+          <div class="for-visual-item">
+            <div class="avatar" style="background: rgba(52,211,153,0.15);">☁️</div>
+            <div class="info">
+              <h5>ClickUp</h5>
+              <span>+278 afiliados activos</span>
+            </div>
+            <span class="commission">+72% retención</span>
+          </div>
+        </div>
+        <div class="for-text">
+          <span class="section-label">Para Empresas SaaS</span>
+          <h2 class="section-title">Escala tu adquisición con afiliados de calidad</h2>
+          <p>
+            Conecta tu producto con una red de +250 recomendadores verificados 
+            que crean contenido auténtico para audiencias segmentadas. Paga solo 
+            por resultados reales.
+          </p>
+          <ul class="for-features">
+            <li><span class="check">✓</span> Red de afiliados pre-validados con audiencias reales</li>
+            <li><span class="check">✓</span> Modelo CPA (Coste por Adquisición) sin riesgo</li>
+            <li><span class="check">✓</span> Reportes detallados de cada campaña</li>
+            <li><span class="check">✓</span> Integración directa vía API con tu plataforma</li>
+            <li><span class="check">✓</span> Compatible con AIs que recomiendan tu producto</li>
+          </ul>
+          <br />
+          <a href="#contacto" class="btn-primary">Quiero afiliar mi SaaS &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED TOOLS ===== -->
+  <section class="section" id="herramientas">
+    <div class="container">
+      <div style="text-align: center;" class="reveal">
+        <span class="section-label">Herramientas destacadas</span>
+        <h2 class="section-title">SaaS y AIs más recomendados</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">
+          Las herramientas con mejores comisiones y mayor tasa de conversión para recomendadores
+        </p>
+      </div>
+
+      <div class="tools-grid">
+        <div class="tool-card reveal">
+          <div class="tool-icon" style="background: rgba(56,189,248,0.12);">🤖</div>
+          <h4>ChatGPT Plus</h4>
+          <p>Suscripción mensual</p>
+          <span class="badge" style="background: rgba(34,197,94,0.1); color:#22c55e;">Comisión 20%</span>
+        </div>
+        <div class="tool-card reveal">
+          <div class="tool-icon" style="background: rgba(251,191,36,0.12);">🎨</div>
+          <h4>Canva Pro</h4>
+          <p>Diseño y branding</p>
+          <span class="badge" style="background: rgba(34,197,94,0.1); color:#22c55e;">Comisión 25%</span>
+        </div>
+        <div class="tool-card reveal">
+          <div class="tool-icon" style="background: rgba(168,85,247,0.12);">📝</div>
+          <h4>Notion Plus</h4>
+          <p>Productividad</p>
+          <span class="badge" style="background: rgba(34,197,94,0.1); color:#22c55e;">Comisión 20%</span>
+        </div>
+        <div class="tool-card reveal">
+          <div class="tool-icon" style="background: rgba(239,68,68,0.12);">🎵</div>
+          <h4>Descript</h4>
+          <p>Edición multimedia</p>
+          <span class="badge" style="background: rgba(34,197,94,0.1); color:#22c55e;">Comisión 30%</span>
+        </div>
+        <div class="tool-card reveal">
+          <div class="tool-icon" style="background: rgba(52,211,153,0.12);">📈</div>
+          <h4>Semrush</h4>
+          <p>SEO y marketing</p>
+          <span class="badge" style="background: rgba(34,197,94,0.1); color:#22c55e;">Comisión 25%</span>
+        </div>
+        <div class="tool-card reveal">
+          <div class="tool-icon" style="background: rgba(99,102,241,0.12);">💻</div>
+          <h4>GitHub Copilot</h4>
+          <p>Asistente de código</p>
+          <span class="badge" style="background: rgba(34,197,94,0.1); color:#22c55e;">Comisión 15%</span>
+        </div>
+        <div class="tool-card reveal">
+          <div class="tool-icon" style="background: rgba(236,72,153,0.12);">📸</div>
+          <h4>Midjourney</h4>
+          <p>IA generativa</p>
+          <span class="badge" style="background: rgba(34,197,94,0.1); color:#22c55e;">Comisión 20%</span>
+        </div>
+        <div class="tool-card reveal">
+          <div class="tool-icon" style="background: rgba(251,146,60,0.12);">📬</div>
+          <h4>Mailchimp</h4>
+          <p>Email marketing</p>
+          <span class="badge" style="background: rgba(34,197,94,0.1); color:#22c55e;">Comisión 18%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <div class="cta-box reveal">
+        <h2>¿Listo para formar parte del ecosistema?</h2>
+        <p>
+          Únete como recomendador o afilia tu SaaS. En 24 horas tendrás acceso 
+          a nuestra plataforma con tracking, dashboard y soporte dedicado.
+        </p>
+        <div class="btn-group">
+          <a href="mailto:hola@marketing2974.com" class="btn-primary">
+            Soy recomendador &rarr;
+          </a>
+          <a href="mailto:hola@marketing2974.com" class="btn-secondary">
+            Soy una empresa SaaS
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">Marketing<span>29</span>74</a>
+          <p>
+            La plataforma que conecta herramientas SaaS y de IA con los mejores 
+            recomendadores del mundo digital. Crecimiento para todos.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h5>Plataforma</h5>
+          <a href="#">Herramientas</a>
+          <a href="#">Recomendadores</a>
+          <a href="#">Programa de afiliados</a>
+          <a href="#">API para AIs</a>
+        </div>
+        <div class="footer-col">
+          <h5>Recursos</h5>
+          <a href="#">Blog</a>
+          <a href="#">Guías de afiliados</a>
+          <a href="#">Dashboard</a>
+          <a href="#">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contacto</h5>
+          <a href="mailto:hola@marketing2974.com">hola@marketing2974.com</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Twitter / X</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Marketing2974. Todos los derechos reservados.</span>
+        <span>
+          <a href="#" style="color:#475569;">Aviso Legal</a> · 
+          <a href="#" style="color:#475569;">Privacidad</a> · 
+          <a href="#" style="color:#475569;">Cookies</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile toggle
+    const toggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+
+    // Close mobile menu on click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Reveal animations on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth counter animation for stats
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stat-item h3');
+      counters.forEach(counter => {
+        const text = counter.textContent;
+        const numMatch = text.match(/[\d,]+\.?\d*/);
+        if (!numMatch) return;
+        
+        const target = parseFloat(numMatch[0].replace(/,/g, ''));
+        const prefix = text[0];
+        const suffix = text.includes('%') ? '%' : text.includes('M') ? 'M' : '';
+        const duration = 2000;
+        const start = performance.now();
+        
+        function update(currentTime) {
+          const elapsed = currentTime - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(eased * target);
+          
+          if (prefix === '$') {
+            const formatted = (current / 1000000).toFixed(1);
+            counter.textContent = `$${formatted}${suffix}`;
+          } else if (suffix === '%') {
+            counter.textContent = `${current}%`;
+          } else if (suffix === 'M') {
+            counter.textContent = `$${current / 1000000}M`;
+          } else {
+            counter.textContent = current.toLocaleString();
+          }
+          
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            counter.textContent = text;
+          }
+        }
+        requestAnimationFrame(update);
+      });
+    }
+
+    // Trigger counter animation when stats section is visible
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelector('.stats-grid') && statsObserver.observe(document.querySelector('.stats-grid'));
+  </script>
+</body>
+</html>
